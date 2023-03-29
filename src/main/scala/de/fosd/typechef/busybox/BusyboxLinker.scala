@@ -156,8 +156,8 @@ object TmpLinkerStuff extends App {
 
     def d(s: String) = FeatureExprFactory.createDefinedExternal(s)
 
-    println(fm.isSatisfiable())
-    if (!(fm implies i.featureModel).isTautology()) {
+    println(fm.isSatisfiable)
+    if (!(fm implies i.featureModel).isTautology) {
         println("variability restricted over variability model: ")
         println(fm andNot i.featureModel)
     } else
@@ -184,7 +184,7 @@ object TmpLinkerStuff extends App {
                 ) contains sym)
 
     for (imp <- i.imports.sortBy(_.name))
-        if (imp.fexpr.isSatisfiable() && !excludeSymbol(imp.name))
+        if (imp.fexpr.isSatisfiable && !excludeSymbol(imp.name))
             println(imp)
 
 

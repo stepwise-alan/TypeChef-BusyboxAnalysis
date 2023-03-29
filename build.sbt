@@ -2,14 +2,14 @@ name := "TypeChef Busybox Analysis"
 
 version := "0.4.2"
 
-scalaVersion := "2.12.1"
+scalaVersion := "2.13.8"
 
 organization := "de.fosd.typechef"
 
 
-libraryDependencies += "com.github.scopt" %% "scopt" % "3.5.0"
+libraryDependencies += "com.github.scopt" %% "scopt" % "4.1.0"
 
-libraryDependencies += "org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.4"
+libraryDependencies += "org.scala-lang.modules" %% "scala-parser-combinators" % "2.1.1"
 
 libraryDependencies += "de.fosd.typechef" %% "frontend" % "0.4.2"
 

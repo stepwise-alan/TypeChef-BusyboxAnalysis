@@ -17,7 +17,7 @@ make gen_build_files
 make include/config/MARKER
 make applets/applets.o
 #eliminate long list that's extremely expensive to parse
-> include/applets.h
+#> include/applets.h
 cd ..
 
 # read the feature model and create corresponding files

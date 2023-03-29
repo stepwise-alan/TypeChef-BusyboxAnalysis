@@ -34,7 +34,7 @@ object CleanFileList {
             opt[File]("featureModel") valueName ("<dimacs file>") action { (x, c) =>
                 c.copy(featureModel = Some(x))
             } text ("feature model in dimacs format")
-            arg[File]("<file>") required() action { (x, c) =>
+            arg[File]("<file>").required() action { (x, c) =>
                 c.copy(inputFile = x)
             }
         }
@@ -103,7 +103,7 @@ object GeneratePCFiles {
             opt[File]("workingDir") valueName ("<dir>") action { (x, c) =>
                 c.copy(workingDir = x)
             } text ("working directory (root of the linux tree)")
-            arg[File]("<file>") required() action { (x, c) =>
+            arg[File]("<file>").required() action { (x, c) =>
                 c.copy(inputFile = x)
             }
         }
@@ -124,7 +124,7 @@ object GeneratePCFiles {
 
             val pcFile = new File(config.workingDir, filename + ".pc")
 //            println(pcFile+" -> "+fexpr)
-            if (!fexpr.isTautology()) {
+            if (!fexpr.isTautology) {
                 val pcWriter = new PrintWriter(pcFile)
                 fexpr.print(pcWriter)
                 pcWriter.close
@@ -155,7 +155,7 @@ class KConfigMinerParser(openFeatures: Option[Set[String]]) extends RegexParsers
             term
 
     def term: Parser[FeatureExpr] =
-        "!" ~> commit(expr) ^^ (_ not) |
+        "!" ~> commit(expr) ^^ (_.not()) |
             ("(" ~> (expr ~ "&&" ~ expr) <~ ")") ^^ {
                 case (a ~ _ ~ b) => a and b
             } |

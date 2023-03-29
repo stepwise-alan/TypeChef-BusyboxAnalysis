@@ -1,9 +1,10 @@
 package de.fosd.typechef.busybox
 
+import de.fosd.typechef.featureexpr.FeatureExprFactory.sat._
+import de.fosd.typechef.featureexpr.sat.{SATFeatureExpr, SATFeatureModel}
 import de.fosd.typechef.featureexpr.{FeatureExprFactory, FeatureExprParser}
-import de.fosd.typechef.featureexpr.sat.{SATFeatureModel, SATFeatureExpr}
-import java.io.{OutputStreamWriter, PrintStream, File, FileWriter}
-import FeatureExprFactory.sat._
+
+import java.io.{File, FileWriter}
 
 /**
  * reads a feature expression from a file (parameter 1) and creates a dimacs file (parameter 2)
@@ -27,7 +28,7 @@ object CreateDimacs extends App {
         val fexpr = new FeatureExprParser(FeatureExprFactory.sat).parseFile(inputFilename).asInstanceOf[SATFeatureExpr]
 
 
-        val fm = SATFeatureModel.create(if (isCNF) fexpr else fexpr.toCnfEquiSat()).asInstanceOf[SATFeatureModel]
+        val fm = SATFeatureModel.create(if (isCNF) fexpr else fexpr.toCnfEquiSat).asInstanceOf[SATFeatureModel]
 
         val outputFilename = if (args.length < 3) "fm.dimacs" else args(2)
         val out = //new OutputStreamWriter())
